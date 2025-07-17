@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option go_package = "Go_Team00.ID_376234-Team_TL_barievel/gen/pb;pb";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+message FrequencyMessage {
+    string session_id = 1;
+    double frequency = 2;
+    google.protobuf.Timestamp timestamp = 3;
+}
+
+service FrequencyService {
+    // TransmitFrequencies - стримит сообщения с частотами
+    // На каждое подключение генерирует новый session_id и параметры распределения
+    rpc TransmitFrequencies(google.protobuf.Empty) returns (stream FrequencyMessage);
+}
